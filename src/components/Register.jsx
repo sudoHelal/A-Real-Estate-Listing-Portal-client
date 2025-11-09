@@ -1,10 +1,11 @@
 import React, { use } from 'react';
 import { Link } from 'react-router';
 import { AuthContext } from './Contexts/AuthContext';
+import Swal from 'sweetalert2';
 
 
 const Register = () => {
-    const { createUser, setUser, updateUser,googleSignIn } = use(AuthContext);
+    const { createUser, setUser, updateUser, googleSignIn } = use(AuthContext);
     const handleRegiser = (e) => {
         e.preventDefault();
         const name = e.target.name.value;
@@ -12,6 +13,12 @@ const Register = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         console.log(name, image, email, password);
+        const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
+
+        if (!passwordPattern.test(password)) {
+            Swal.fire("password should be 6 letters, uppercase lowercase!");
+            return;
+        }
         createUser(email, password)
             .then(result => {
                 const user = result.user;
@@ -29,16 +36,16 @@ const Register = () => {
                 console.log(error.code);
             })
     }
-    const handleGoogleLogIn = (e) =>{
+    const handleGoogleLogIn = (e) => {
         e.preventDefault();
         e.stopPropagation()
         googleSignIn()
-        .then(result =>{
-            console.log(result.user);
-        })
-        .catch(error =>{
-            console.log(error);
-        })
+            .then(result => {
+                console.log(result.user);
+            })
+            .catch(error => {
+                console.log(error);
+            })
 
 
     }
