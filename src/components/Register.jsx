@@ -4,7 +4,7 @@ import { AuthContext } from './Contexts/AuthContext';
 
 
 const Register = () => {
-    const {createUser, setUser} = use(AuthContext);
+    const {createUser, setUser,updateUser} = use(AuthContext);
     const handleRegiser = (e) =>{
         e.preventDefault();
         const name = e.target.name.value;
@@ -14,8 +14,16 @@ const Register = () => {
         console.log(name, image, email, password);
         createUser( email, password)
         .then(result =>{
-            console.log(result.user)
-            setUser(result.user)
+            const user = result.user;
+            console.log(user)
+            updateUser({displayName:name, photoURL: image}).then(()=>{
+
+                setUser({...user,displayName:name, photoURL: image})
+            })
+            .catch(error =>{
+                console.log(error);
+                setUser(user)
+            })
         })
         .catch(error =>{
             console.log(error.code);
@@ -42,7 +50,7 @@ const Register = () => {
                             <label className="label">Password</label>
                             <input type="password" className="input" name="password" placeholder="Password" />
                             
-                            <button className="btn btn-neutral mt-4">Register Now</button>
+                            <button className="btn btn-neutral bg-[#7b6557] mt-4">Register Now</button>
                         </fieldset>
                     </form>
                     <p>Do you have account? please <Link className='text-[#7b6557] underline' to="/auth/login">LogIn</Link></p>

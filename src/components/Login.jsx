@@ -32,7 +32,7 @@ const Login = () => {
                             <label className="label">Password</label>
                             <input type="password" className="input" name="password" placeholder="Password" />
                             <div><a className="link link-hover">Forgot password?</a></div>
-                            <button className="btn btn-neutral mt-4">LogIn Now</button>
+                            <button className="btn btn-neutral bg-[#7b6557] mt-4">LogIn Now</button>
                         </fieldset>
                     </form>
                     <p>Don't  have account? please <Link className='text-[#7b6557] underline' to="/auth/register">Register</Link></p>
