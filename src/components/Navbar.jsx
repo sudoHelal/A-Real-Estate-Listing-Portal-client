@@ -18,7 +18,10 @@ const Navbar = () => {
     <li><NavLink to="/addProperties">Add Properties</NavLink></li>
     <li><NavLink to="/myProperties">My Properties</NavLink></li>
     <li><NavLink to="/myRatings">My Ratings</NavLink></li>
+  {
+   
 
+  }
   </>
   return (
     <div className="navbar bg-[#7b6557] shadow-sm">
@@ -46,8 +49,9 @@ const Navbar = () => {
   <div className="dropdown dropdown-end">
     {/* Profile Image as dropdown toggle */}
     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-      <div className="w-10 rounded-full">
+      <div className="w-10 rounded-full border-2 border-white overflow-hidden">
         <img src={user.photoURL || '/default-profile.png'} alt="Profile" />
+        
       </div>
     </label>
     
