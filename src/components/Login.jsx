@@ -8,7 +8,14 @@ const Login = () => {
         e.preventDefault();
         
         const email = e.target.email.value;
-        const 
+        const password = e.target.password.value;
+        signInUser(email, password)
+        .then(result =>{
+            console.log(result.user);
+        })
+        .catch(error =>{
+            console.log(error);
+        })
     }
     return (
         <div className='flex justify-center items-center min-h-screen'>
